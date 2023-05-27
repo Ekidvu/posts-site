@@ -1,0 +1,49 @@
+
+
+.header {
+    margin-bottom: 20px;
+
+}
+
+.header header {
+    height: 130px;
+    /* background-color: rgb(179, 101, 38); */
+}
+
+.div_menu {
+    height: 100%;
+    display: flex;
+    align-items: baseline;
+}
+
+.header header .div_title_box {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    font-family: 'Playfair', serif;
+    font-weight: 800;
+    font-size: 46px;
+    color: rgba(16, 216, 16, 0.863);
+    text-shadow: rgb(255, 187, 0) 1px 0 10px;
+    /* color: rgba(17, 240, 17, 0.733); */
+}
+
+.div_title_box_text {
+    align-self: center;
+    line-height: 4vh;
+}
+.div_title_box_text span {
+    font-size: 21px;
+}
+
+.div_box {
+    height: 100%;
+}
+
+.search_area {
+    height: 100%;
+    display: flex;
+    align-items: end;
+}

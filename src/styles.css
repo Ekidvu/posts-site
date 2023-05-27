@@ -1,0 +1,35 @@
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* .cards_body_container {
+  width: 100%;
+} */
+
+.cards_body {
+  background: no-repeat center/cover url(https://lookw.ru/1/532/1402243026-teksturi-14-44.jpg);
+  /* background-size: fit-content; */
+}
+
+
+
+/* background: no-repeat center/cover url(https://lookw.ru/1/532/1402243026-teksturi-14-44.jpg);
+background-size: fit-content; */
+
+

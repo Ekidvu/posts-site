@@ -1,0 +1,74 @@
+.modal_post {
+    min-width: 600px;
+    min-height: 400px;
+    /* max-width: 750px; */
+    /* border: 2px solid; */
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+}
+
+/* .modal_post_containers {
+
+} */
+.modal_post_image {
+    display: flex;
+    justify-content: center;
+}
+
+.modal_post_image img{
+    min-width: 80%;
+    max-width: 100%;
+    max-height: 500px;
+    background-size: initial;
+}
+
+.modal_post_vertical {
+    grid-row-start: span 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.post_author_section {
+    padding: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.post_author_inf {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.author_name {
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.author_about {
+    font-size: 16px;
+    padding-left: 5px;
+    color: cornflowerblue;
+}
+
+.post_author_ava {
+    min-width: 70px;
+    min-height: 70px;
+}
+
+.comments {
+    padding: 8px;
+    height: 100%;
+}
+
+.text div {
+    font-size: 25px;
+}
+
+/* #modal_post_author span.MuiTypography-root.MuiTypography-h5.MuiCardHeader-title.css-1qvr50w-MuiTypography-root {
+    font-size: 15px;
+} */
+
+
