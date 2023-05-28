@@ -12,7 +12,7 @@ export function Modal({ children, isOpen, onClose }) {
     useEffect(() => {
         if(isOpen) {
             setTimeout(() => {
-            },)
+            },300)
         }
     })
 

@@ -1,7 +1,7 @@
 export const postData = [
         {
             "image": "https://avatars.mds.yandex.net/i?id=2c33d71d946d2e8442938e06578c3297e11ae18a-7761368-images-thumbs&n=13",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "анекдот"
@@ -24,7 +24,7 @@ export const postData = [
         },
         {
             "image": "https://avatars.mds.yandex.net/i?id=b592f8689b9a347871acc52ccf908a5f9c77102d-7662207-images-thumbs&n=13",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "peace"
@@ -93,7 +93,7 @@ export const postData = [
         },
         {
             "image": "https://avatars.mds.yandex.net/i?id=b4def4dac42f8869c2be60f28c5e8d709f200e1c-5886829-images-thumbs&n=13",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "peace"
@@ -162,7 +162,7 @@ export const postData = [
         },
         {
             "image": "https://avatars.mds.yandex.net/i?id=1c803921cd6a255c7f78f63749420c7d95aabc6b-8000127-images-thumbs&n=13",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "peace"
@@ -346,7 +346,7 @@ export const postData = [
         },
         {
             "image": "http://dummyimage.com/400x200.png/cc0000/ffffff",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "legendary"
@@ -392,7 +392,7 @@ export const postData = [
         },
         {
             "image": "https://avatars.mds.yandex.net/i?id=dac03e53f9fa8d374fc8bd769128dd57ee4e4fcb-6383766-images-thumbs&n=13",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "kaif"
@@ -438,7 +438,7 @@ export const postData = [
         },
         {
             "image": "http://dummyimage.com/400x200.png/cc0000/ffffff",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "peace"
@@ -530,7 +530,7 @@ export const postData = [
         },
         {
             "image": "http://dummyimage.com/400x200.png/cc0000/ffffff",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "legendary"
@@ -553,7 +553,7 @@ export const postData = [
         },
         {
             "image": "http://dummyimage.com/400x200.png/cc0000/ffffff",
-            "likes": [],
+            "likes": ["64107e08aa397121838f28a8"],
             "comments": [],
             "tags": [
                 "peace"
@@ -631,7 +631,7 @@ export const postData = [
             "_id": "622bdae806c7d323b8ae4630",
             "title": "First Case, Second Case (Ghazieh-e Shekl-e Aval, Ghazieh-e Shekl-e Dou Wom)",
             "author": {
-                "name": "Иван Иванов",
+                "name": "Стеша Печенькин",
                 "about": "Писатель",
                 "avatar": "https://react-learning.ru/image-compressed/default-image.jpg",
                 "_id": "622bd81b06c7d323b8ae4614",
@@ -639,8 +639,8 @@ export const postData = [
                 "__v": 0
             },
             "text": "Reposition Left Sphenoid Bone, Percutaneous Endoscopic Approach",
-            "created_at": "2022-03-11T23:27:36.313Z",
-            "updated_at": "2022-03-11T23:27:36.313Z",
+            "created_at": "2020-01-01T23:27:36.313Z",
+            "updated_at": "2020-02-15T10:01:48.313Z",
             "__v": 0
         }
     ];

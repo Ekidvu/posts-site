@@ -9,24 +9,26 @@ import { red } from '@mui/material/colors';
 import cn from 'classnames';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru'
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { PostsContext } from '../../contexts/post-context';
+import { isLiked } from '../utils/global-funcs';
+import { UserContext } from '../../contexts/current-user-context';
 dayjs.locale('ru')
 
 
 export function Post({ title, text, author, _id, image, created_at, tags, likes, ...rest }) {
-    const { changeOpenModal, setClickedPost } = useContext(PostsContext);
-    const [isLiked, setIsLiked] = useState(false)
-    
+    const { changeOpenModal, setClickedPost, handlePostLike } = useContext(PostsContext);
+    const { currentUser } = useContext(UserContext)
+    // const [isLikedState, setIsLikedState] = useState(false);
+
+    const like = isLiked(likes, currentUser?._id);
+    const handleClickLike = () => handlePostLike({likes, _id});
+
     function handleClickOpenPost(e) {
         e.preventDefault();
         changeOpenModal(true);
         setClickedPost(_id)
     }
-
-    
-    
-    const handleClickLike = () => setIsLiked(!isLiked);
 
     return (
         <Grid2 className={s.card_container} sx={{ display: 'flex' }} item='true' xs={12} sm={6} md={4} lg={3}>
@@ -62,7 +64,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                
+
                 <Typography className={s.card_date_create}>
                     <span>{dayjs(created_at).format('DD MMMM YYYY [г.] HH:mm')}</span>
                 </Typography>
@@ -74,7 +76,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                         <IconButton aria-label="share">
                             <ShareIcon />
                         </IconButton>
-                        <IconButton id={s.btn_fav} className={cn('post__favourite', { 'post__favourite_is_active': isLiked })} onClick={handleClickLike}>
+                        <IconButton id={s.btn_fav} className={cn('post__favourite', { 'post__favourite_is_active': like })} onClick={handleClickLike}>
                             <FavoriteIcon />
                         </IconButton>
                         {/* <Button size="small" color="primary">

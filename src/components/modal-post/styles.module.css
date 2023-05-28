@@ -63,12 +63,17 @@
     height: 100%;
 }
 
-.text div {
+.textModalDiv div {
     font-size: 25px;
+    display: inline-block;
 }
 
-/* #modal_post_author span.MuiTypography-root.MuiTypography-h5.MuiCardHeader-title.css-1qvr50w-MuiTypography-root {
-    font-size: 15px;
-} */
+.textModalDiv__text {
+    font-family: 'Times New Roman', Times, serif;
+    max-height: 550px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
 
 
