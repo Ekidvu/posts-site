@@ -51,7 +51,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                 <CardActionArea onClick={handleClickOpenPost} className={s.cardarea}>
                     <CardMedia
                         component="img"
-                        height="140"
+                        height="200"
                         image={image}
                         alt="green iguana"
                     />
