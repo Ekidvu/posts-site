@@ -1,27 +1,54 @@
 
 
-.header {
-    margin-bottom: 20px;
-
+.header{
+    /* height: 150px; */
+    /* background-color: #1976d2; */
+    /* padding-bottom: 20px; */
+    /* margin-bottom: 0; */
 }
+
+.header.styles_header__WzVex.MuiBox-root.css-i9gxme {
+    /* height: 100%; */
+    /* padding-bottom: 20px;
+    margin-bottom: 0; */
+}
+
+
+/* style color #1976d2 */
 
 .header header {
     height: 130px;
-    /* background-color: rgb(179, 101, 38); */
+    /* height: 100%; */
+}
+
+/* .div_box {
+    height: 100%;
+} */
+
+.appbar {
+    height: 100%;
+}
+
+.div_box {
+    margin: 0;
+    width: 100%;
+}
+
+.profile_buttons {
+    margin: 7px 8px 0 0;
 }
 
 .div_menu {
-    height: 100%;
     display: flex;
     align-items: baseline;
 }
 
-.header header .div_title_box {
+.header .div_title_box {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 100%;
+    align-items: center;
     font-family: 'Playfair', serif;
     font-weight: 800;
     font-size: 46px;
@@ -31,19 +58,17 @@
 }
 
 .div_title_box_text {
-    align-self: center;
+    /* align-self: center; */
     line-height: 4vh;
 }
 .div_title_box_text span {
     font-size: 21px;
 }
 
-.div_box {
-    height: 100%;
-}
-
 .search_area {
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: end;
+    justify-content: space-between;
 }

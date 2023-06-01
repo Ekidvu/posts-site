@@ -9,8 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import cn from 'classnames'
 import s from './styles.module.css'
+import "./index.css"
 import { useContext } from 'react';
 import { PostsContext } from '../../contexts/post-context';
+import ProfileButton from '../btn-account';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -25,7 +27,7 @@ const Search = styled('div')(({ theme }) => ({
         marginLeft: theme.spacing(1),
         width: 'auto',
     },
-    marginBottom: '15px',
+    // marginBottom: '15px',
 }));
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
@@ -60,8 +62,8 @@ export function Header() {
 
     return (
         <>
-            <Box sx={{ flexGrow: 1 }} className={s.header}>
-                <AppBar position="static">
+            <Box id="header_cont" className={s.header}>
+                <AppBar position="static" className={s.appbar} >
                     <Toolbar className={s.div_box}>
                         <div className={s.div_menu}>
                             <IconButton
@@ -69,17 +71,24 @@ export function Header() {
                                 edge="start"
                                 color="inherit"
                                 aria-label="open drawer"
-                                sx={{ mr: 3, mt: 1 }}
+                                sx={{ mr: 3, mb: 4 }}
                             >
                                 <MenuIcon />
                             </IconButton>
                         </div>
+
                         <div className={s.div_title_box}>
                             <div className={s.div_title_box_text}>
-                                Ну и __@<span>▲</span>@<br /> __шуточки
+                                Ну и __@<span>▲</span>@<br></br> __шуточки
                             </div>
                         </div>
+
                         <div className={s.search_area}>
+
+                            <div className={s.profile_buttons}>
+                                <ProfileButton />
+                            </div>
+
                             <Search>
                                 <SearchIconWrapper>
                                     <SearchIcon />
@@ -94,10 +103,12 @@ export function Header() {
                                     />
                                 </form>
                             </Search>
+
                         </div>
                     </Toolbar>
                 </AppBar>
             </Box>
+
         </>
     );
 }
@@ -111,3 +122,45 @@ export function Header() {
 // >
 // Ну и шуточки
 // </Typography> */}
+
+// {/* <Box sx={{ flexGrow: 1, mb: 6 }} id="header_cont" className={s.header}> */}
+
+            // {/* <Box></Box> */}
+            // {/* <Box id="header_cont" className={s.header}>
+            //     <AppBar position="static" className={s.appbar} id="appbar_style">
+            //         <Toolbar className={s.div_box}>
+            //             <div className={s.div_menu}>
+            //                 <IconButton
+            //                     size="large"
+            //                     edge="start"
+            //                     color="inherit"
+            //                     aria-label="open drawer"
+            //                     sx={{ mr: 3, mt: 1 }}
+            //                 >
+            //                     <MenuIcon />
+            //                 </IconButton>
+            //             </div>
+            //             <div className={s.div_title_box}>
+            //                 <div className={s.div_title_box_text}>
+            //                     Ну и __@<span>▲</span>@<br /> __шуточки
+            //                 </div>
+            //             </div>
+            //             <div className={s.search_area}>
+            //                 <Search>
+            //                     <SearchIconWrapper>
+            //                         <SearchIcon />
+            //                     </SearchIconWrapper>
+            //                     <form className='search' onSubmit={handleFormSubmit}>
+            //                         <StyledInputBase
+            //                             placeholder="Поиск…"
+            //                             inputProps={{ 'aria-label': 'search' }}
+            //                             onChange={(e) => {
+            //                                 handleInputChange(e.target.value)
+            //                             }}
+            //                         />
+            //                     </form>
+            //                 </Search>
+            //             </div>
+            //         </Toolbar>
+            //     </AppBar>
+            // </Box> */}

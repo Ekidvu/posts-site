@@ -1,0 +1,226 @@
+.new_post_body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form.new_post_container {
+    display: grid;
+    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 80%;
+    /* max(70%, 50vh);   /* calc(50vh + 200px) */
+    max-height: 70%;
+    background-color: transparent;
+}
+
+/*---- 1st section Image ------*/
+
+section.edit_image {
+    grid-column-start: span 2;
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    height: fit-content;
+}
+
+/* .image_div {} */
+
+.a_for_pics {
+    text-decoration: none;
+    color: rgb(68, 9, 36);
+    font-size: 18px;
+}
+
+.image_div img {
+    max-width: 100%;
+    max-height: 700px;
+    border-radius: 10px;
+    border: 1px solid #0b316b;
+}
+
+label.img_label {
+    margin: 5px;
+    /* margin-top: auto; */
+    width: max-content;
+    padding: 7px 9px 5px;
+    background-color: rgba(131, 206, 196, 0.267);
+    border-radius: 17px;
+    border: 1px solid rgba(35, 161, 130, 0.712);
+    transition: background-color 1s ease-out;
+}
+label.img_label:focus {
+    border: 2px solid #0b316b;
+}
+
+label.img_label:hover {
+    background-color: rgba(131, 206, 196, 0.856);
+    cursor: pointer;
+}
+
+.image_src_input {
+    width: 75%;
+    line-height: 2.1;
+    font-size: 16px;
+    padding: 3px 7px 0 11px;
+    background-color: rgba(196, 204, 235, 0.692);
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.image_src_input::placeholder {
+    color: #0b316b;
+    opacity: 0.9;
+}
+
+.for_inp_n_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.span_for_btn button.inp_btn {
+    background-color: none;
+    border: none;
+}
+
+.span_for_btn {
+    /* width: max-content; */
+    padding: 7px 9px 4.5px 9px;
+    background-color: rgba(131, 206, 196, 0.267);
+    border-radius: 17px;
+    border: 1px solid rgba(35, 161, 130, 0.712);
+    transition: background-color 1s ease-out;
+}
+.span_for_btn:hover {
+    background-color: rgba(131, 206, 196, 0.856);
+    cursor: pointer;
+}
+.span_for_btn:focus {
+    border: 2px solid #0b316b;
+}
+
+/*---- 2nd section Service ------*/
+section.service {
+    margin-left: 2px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title, .tags, .author {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    padding: 6px 16px 11px;
+    align-items: end;
+
+
+    margin-bottom: 10px;
+    border: 3px solid;
+    background-image: linear-gradient(135deg, rgba(172, 119, 119, 0.452), rgba(44, 74, 207, 0.411));;
+    border-radius: 15px;
+}
+/*goldenrod*/
+
+.title_n_tags {
+    display: flex;
+    flex-direction: column;
+
+    /* gap: 10px; */
+}
+
+
+.author {
+    height: 100%;
+}
+
+/* .title h3 {
+    margin: 0;
+} */
+.title h5 {
+    margin: 6px 0;
+}
+.title_n_tags p {
+    margin: 1px 0 10px;
+    display: flex;
+    justify-self: end;
+    font-size: 14px;
+}
+
+.title_n_tags span {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.title_n_tags input[type="text"] {
+    padding: 6px;
+    width: 75%;
+    line-height: 2.1;
+    font-size: 16px;
+    padding: 3px 7px 0 11px;
+    background-color: rgba(196, 204, 235, 0.692);
+    border-radius: 15px;
+    margin-right: 5px;
+}
+
+.title_font {
+    margin: 0;
+    color: rgba(221, 201, 24, 0.685);
+    text-shadow: 1px 1px 2px rgb(212, 163, 27), 0 0 1em rgb(23, 197, 37), 0 0 0.2em rgba(9, 140, 201, 0.637);
+} 
+
+.tags {
+    margin-bottom: 0;
+}
+
+
+
+/*---- 3rd section Text ------*/
+
+section.text {
+    grid-column-start: span 3;
+    margin: 2px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+.text_label {
+    width: fit-content;
+    padding: 7px 9px 4.5px 9px;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: rgba(131, 206, 196, 0.267);
+    border-radius: 17px;
+    border: 1px solid rgba(35, 161, 130, 0.712);
+    transition: background-color 1s ease-out;
+}
+
+.text_label:hover {
+    background-color: rgba(131, 206, 196, 0.856);
+    cursor: pointer;
+}
+.text_label:focus {
+    border: 2px solid #0b316b;
+}
+
+.text_span {
+    align-self: center;
+}
+
+.text_span textarea {
+    resize: none;
+    min-width: 60vw;
+    font-size: 18px;
+    padding: 10px 10px;
+    border-radius: 16px;
+}
+
+/* a.a_for_pics, a.a_for_pics:hover, a.a_for_pics:active {
+    text-decoration: none;
+} */

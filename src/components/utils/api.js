@@ -10,9 +10,9 @@ class Api {
         return res.ok ? res.json() : res.json().then(err => Promise.reject(err))
     }
 
-    // getAllInfo() {
-    //     return Promise.all([this.getProductsList(), this.getUserInfo()])
-    // }
+    getAllInfo() {
+        return Promise.all([this.getPostsList(), this.getUserInfo()])
+    }
 
     getUserInfo() {
         return fetch(`${this.#baseUrl}/users/me`, {
@@ -32,8 +32,28 @@ class Api {
         return fetch(`${this.#baseUrl}/posts/${postID}`, {
             headers: this.#headers
         })
-            .then(this.#onResponce)        
+            .then(this.#onResponce)
     }
+
+    changeCommentById(postID, updateData, commentId) {
+        console.log(postID, updateData);
+        return fetch(`${this.#baseUrl}/posts/comments/${postID}`, {
+            method: "POST",
+            headers: this.#headers,
+            body: JSON.stringify(updateData)
+        })
+            .then(this.#onResponce)
+    }
+
+    // changePostById(postID, updateData) {
+    //     console.log(postID, updateData);
+    //     return fetch(`${this.#baseUrl}/posts/${postID}`, {
+    //         method: "PATCH",
+    //         headers: this.#headers,
+    //         body: JSON.stringify({updateData})
+    //     })
+    //         .then(this.#onResponce)
+    // }
 
     changeLikePostStatus(postID, like) {
         return fetch(`${this.#baseUrl}/posts/likes/${postID}`, {
@@ -41,7 +61,7 @@ class Api {
             headers: this.#headers,
         })
             .then(this.#onResponce)
-    }  
+    }
 
     // search(searchQuery) {
     //     return fetch(`${this.#baseUrl}/products/search?query=${searchQuery}`, {

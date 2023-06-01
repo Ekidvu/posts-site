@@ -1,8 +1,8 @@
-*,
+/* *,
 *::after,
 *::before {
   box-sizing: inherit;
-}
+} */
 html,
 body {
   scrollbar-gutter: stable;
@@ -27,7 +27,10 @@ code {
   /* background-size: fit-content; */
 }
 
-
+button {
+  all: unset;
+  cursor: pointer;
+}
 
 /* background: no-repeat center/cover url(https://lookw.ru/1/532/1402243026-teksturi-14-44.jpg);
 background-size: fit-content; */

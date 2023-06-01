@@ -1,0 +1,12 @@
+
+button.back_to_top_circle {
+    box-shadow: 1px 0 26px rgb(40, 101, 214);
+    background-color: rgba(234, 243, 233, 0.432);
+}
+
+.b2anchor_style {
+    bottom: 16px;
+}
+.b2comment_style {
+    bottom: 76px;
+}

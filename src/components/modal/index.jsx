@@ -7,14 +7,6 @@ import { useEffect, useRef, useState } from 'react';
 export function Modal({ children, isOpen, onClose }) {
     // const [modalActive, setModalActive] = useState(false);
     const refModal = useRef(null);
-    // console.log(isOpen);
-
-    useEffect(() => {
-        if(isOpen) {
-            setTimeout(() => {
-            },300)
-        }
-    })
 
     const renderContent = () => {
         // if (!isOpen) return null;

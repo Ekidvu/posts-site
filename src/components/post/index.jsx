@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
+import { Avatar, Box, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import s from './styles.module.css';
 import '../component-styles.css'
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
@@ -13,22 +13,28 @@ import { useContext, useEffect, useState } from 'react';
 import { PostsContext } from '../../contexts/post-context';
 import { isLiked } from '../utils/global-funcs';
 import { UserContext } from '../../contexts/current-user-context';
+import api from '../utils/api';
 dayjs.locale('ru')
 
 
 export function Post({ title, text, author, _id, image, created_at, tags, likes, ...rest }) {
-    const { changeOpenModal, setClickedPost, handlePostLike } = useContext(PostsContext);
+    const thisPost = { title, text, author, _id, image, created_at, tags, likes, ...rest };
+    const { setCurrentPost, handlePostLike, handleClickOpenPost } = useContext(PostsContext);
     const { currentUser } = useContext(UserContext)
     // const [isLikedState, setIsLikedState] = useState(false);
 
-    const like = isLiked(likes, currentUser?._id);
-    const handleClickLike = () => handlePostLike({likes, _id});
 
-    function handleClickOpenPost(e) {
+    const like = isLiked(likes, currentUser?._id);
+    const handleClickLike = () => handlePostLike({ likes, _id });
+
+    function handleClickPost(e) {
         e.preventDefault();
-        changeOpenModal(true);
-        setClickedPost(_id)
+        setCurrentPost(thisPost);
+        console.log(thisPost);
+        handleClickOpenPost(thisPost);
     }
+
+    // console.log("Post title: ", _id, "is liked: ", like);
 
     return (
         <Grid2 className={s.card_container} sx={{ display: 'flex' }} item='true' xs={12} sm={6} md={4} lg={3}>
@@ -48,7 +54,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                     subheader={author.about}
                 />
 
-                <CardActionArea onClick={handleClickOpenPost} className={s.cardarea}>
+                <CardActionArea onClick={handleClickPost} className={s.cardarea}>
                     <CardMedia
                         component="img"
                         height="200"
@@ -56,7 +62,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                         alt="green iguana"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h5" component="div" className={s.card_title}>
                             {title}
                         </Typography>
                         <Typography className={s.card_text} variant="body2" color="text.secondary" noWrap>
@@ -65,25 +71,28 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                     </CardContent>
                 </CardActionArea>
 
-                <Typography className={s.card_date_create}>
-                    <span>{dayjs(created_at).format('DD MMMM YYYY [г.] HH:mm')}</span>
-                </Typography>
+                <Box className={s.cont_for_date_and_fav} sx={{ marginTop: 'auto' }}>
+                    <Typography className={s.card_date_create}>
+                        <span>{dayjs(created_at).format('DD MMMM YYYY [г.] HH:mm')}</span>
+                    </Typography>
 
-                <CardActions className={s.bottom_card_cont} sx={{ marginTop: 'auto' }}>
-                    <Typography component="div" className={s.tags} noWrap>{tags}</Typography>
-                    <div className={s.bottom_btns}>
+                    <CardActions className={s.bottom_card_cont}>
+                        <Typography component="div" className={s.tags} noWrap>{tags}</Typography>
+                        <div className={s.bottom_btns}>
 
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton>
-                        <IconButton id={s.btn_fav} className={cn('post__favourite', { 'post__favourite_is_active': like })} onClick={handleClickLike}>
-                            <FavoriteIcon />
-                        </IconButton>
-                        {/* <Button size="small" color="primary">
+                            <IconButton aria-label="share">
+                                <ShareIcon />
+                            </IconButton>
+                            <IconButton id={s.btn_fav} className={cn('post__favourite', { 'post__favourite_is_active': like })} onClick={handleClickLike}>
+                                <FavoriteIcon />
+                            </IconButton>
+                            {/* <Button size="small" color="primary">
                             like
                         </Button> */}
-                    </div>
-                </CardActions>
+                        </div>
+                    </CardActions>
+                </Box>
+
             </Card>
         </Grid2>
     );
