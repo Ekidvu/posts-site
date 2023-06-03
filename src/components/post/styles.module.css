@@ -24,7 +24,7 @@ div.card {
     /* min-width: 330px; */
 }
 .cardarea img {
-    min-width: 330px;
+    /* min-width: 330px; */
     /* overflow: hidden; */
 }
 
@@ -44,6 +44,7 @@ div.card {
     display: flex;
     justify-content: space-between;
     flex-grow: 0;
+    position: relative;
 }
 
 .bottom_btns {
@@ -64,6 +65,33 @@ div.card {
     align-self: flex-end;
 }
 
+.tags {
+    text-shadow: 0 0 0 rgb(255, 255, 255);
+    transition: 0.3s ease-in;
+}
 
+.tags:hover { 
+    text-shadow: 0 0 7px rgb(240, 65, 12);
+}
+
+.tags_show {
+    opacity: 0;
+    position: absolute;
+    bottom: 37px;
+    left: 0;
+    margin-right: 5px;
+    padding: 4px 7px;
+    color: #e06b1d;
+    height: 90px;
+    width: 210px;
+    border: 2px solid rgb(173, 103, 23);
+    border-radius: 14px;
+    background-color: rgba(230, 225, 211, 0.952);
+    transition: 3s ease-in-out;
+}
+
+.tags_show_active {
+    opacity: 1;
+}
 
 /* // darkgoldenrod, burlywood */

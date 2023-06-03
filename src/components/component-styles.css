@@ -2,6 +2,21 @@
     color: rgb(216, 25, 25);
 }
 
+
+#cardGridCont_ID {
+    min-width: 320px;
+    flex: 1;
+    display: inline;
+}
+
+
+
+
+
+
+
+
+
 /*-------*/
 
 .text::-webkit-scrollbar {
@@ -20,6 +35,10 @@
 }
 
 
+
+/* #cardStyleID {
+    min-width: 330px;
+} */
 
 /* .text::-webkit-scrollbar-thumb {
     border-radius: 10px;

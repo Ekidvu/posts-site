@@ -9,6 +9,13 @@ export const autoHeight = (el) => {
     el.style.height = (el.scrollHeight + 3) + "px";
 }
 
+export const parseTags = (tags) => {
+    const parsedTags = tags.length === 1 
+        ? tags.join('').split(/\s|#/g).filter(e=>e).map(tag => `#${tag} `) 
+        : tags.map(tag => "#" + tag.trim().replace(/#/g, '') + " ")
+    return parsedTags
+}
+
 // export const last4signs = () => {
 //     const der = (alphLen=26, charCode=65) => Math.floor(Math.random()*alphLen) + charCode;
 //     const randomLetter = () => String.fromCharCode(der());

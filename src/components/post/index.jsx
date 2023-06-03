@@ -11,13 +11,15 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru'
 import { useContext, useEffect, useState } from 'react';
 import { PostsContext } from '../../contexts/post-context';
-import { isLiked } from '../utils/global-funcs';
+import { isLiked, parseTags } from '../utils/global-funcs';
 import { UserContext } from '../../contexts/current-user-context';
 import api from '../utils/api';
 dayjs.locale('ru')
 
 
 export function Post({ title, text, author, _id, image, created_at, tags, likes, ...rest }) {
+    const [longTagsHoverState, setLongTagsHoverState] = useState(false);
+    const [appearTagsBox, setAppearTagsBox] = useState(false);
     const thisPost = { title, text, author, _id, image, created_at, tags, likes, ...rest };
     const { setCurrentPost, handlePostLike, handleClickOpenPost } = useContext(PostsContext);
     const { currentUser } = useContext(UserContext)
@@ -34,10 +36,30 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
         handleClickOpenPost(thisPost);
     }
 
+    const handleHoverLongTags = (e) => {
+        // console.log(e.target.innerText);
+        if (parseTags(tags).join().length > 20) {
+            setLongTagsHoverState(true);
+            setTimeout(() => {
+                setAppearTagsBox(true)
+            }, 3600)
+        }
+    }
+    const handleHideLongTags = (e) => {
+        setLongTagsHoverState(false);
+        setTimeout(() => {
+            setAppearTagsBox(false)
+        }, 3600)
+    }
+    const tagsDiv = <div className={cn(s.tags_show, {
+        [s.tags_show_active]: !!longTagsHoverState,
+    })}>{parseTags(tags)}</div>;
+
+
     // console.log("Post title: ", _id, "is liked: ", like);
 
     return (
-        <Grid2 className={s.card_container} sx={{ display: 'flex' }} item='true' xs={12} sm={6} md={4} lg={3}>
+        <Grid2 className={s.card_container} id='cardGridCont_ID' sx={{ display: 'flex' }} item='true' xs={12} sm={6} md={4} lg={3}>
             <Card className={s.card} id='cardStyleID' sx={{ maxWidth: 345 }}>
                 <CardHeader
                     avatar={
@@ -77,7 +99,9 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                     </Typography>
 
                     <CardActions className={s.bottom_card_cont}>
-                        <Typography component="div" className={s.tags} noWrap>{tags}</Typography>
+                        <Typography component="div" className={s.tags} noWrap onMouseEnter={handleHoverLongTags} onMouseLeave={handleHideLongTags}>{parseTags(tags)}</Typography>
+                        {longTagsHoverState && tagsDiv}
+
                         <div className={s.bottom_btns}>
 
                             <IconButton aria-label="share">
@@ -86,11 +110,10 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                             <IconButton id={s.btn_fav} className={cn('post__favourite', { 'post__favourite_is_active': like })} onClick={handleClickLike}>
                                 <FavoriteIcon />
                             </IconButton>
-                            {/* <Button size="small" color="primary">
-                            like
-                        </Button> */}
+
                         </div>
                     </CardActions>
+
                 </Box>
 
             </Card>
