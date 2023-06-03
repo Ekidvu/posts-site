@@ -45,6 +45,15 @@ class Api {
             .then(this.#onResponce)
     }
 
+    createPost(postData) {
+        return fetch(`${this.#baseUrl}/posts/`, {
+            method: "POST",
+            headers: this.#headers,
+            body: JSON.stringify(postData)
+        })
+            .then(this.#onResponce)
+    }
+
     // changePostById(postID, updateData) {
     //     console.log(postID, updateData);
     //     return fetch(`${this.#baseUrl}/posts/${postID}`, {

@@ -1,38 +1,111 @@
-/* *,
+*,
 *::after,
 *::before {
   box-sizing: inherit;
-} */
+}
+
+
 html,
 body {
+  
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
+
 
 html {
   box-sizing: border-box;
   height: 100%;
 }
 
+body {
+  
+  height: 100%;
+}
+.root {
+  /* flex-grow: 1; */
+  height: 100%;
+  /* min-height: 100vh; */
+  display: flex;
+  flex-flow: column;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* .cards_body_container {
-  width: 100%;
-} */
-
 .cards_body {
   background: no-repeat center/cover url(https://lookw.ru/1/532/1402243026-teksturi-14-44.jpg);
-  /* background-size: fit-content; */
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  /* height: 100%; */
 }
+
+#posts_container_grid2 {
+  margin: 0;
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* .cards_body_container {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  height: 100%;
+} */
+
+#header_cont{
+  /* height: fit-content; */
+  /* height: 230px; */
+  /* padding-bottom: 20px; */
+  /* margin-bottom: 0; */
+  /* background-color: #1976d2; */
+  /* flex-grow: 1; */
+}
+
+
+/* header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionStatic.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  height: 100%;
+} */
+
 
 button {
   all: unset;
   cursor: pointer;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /* background: no-repeat center/cover url(https://lookw.ru/1/532/1402243026-teksturi-14-44.jpg);
 background-size: fit-content; */
 
 
+body::-webkit-scrollbar {
+  width: 11px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background-color: #f9f9fd;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #1976d2, #487fbe);
+}
+/* body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ece02d, #ee941fc7);
+} */

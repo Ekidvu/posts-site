@@ -1,100 +1,21 @@
-import cn from "classnames";
-import s from "./styles.module.css"
-import { Avatar, Container } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../contexts/current-user-context";
-import { useForm } from 'react-hook-form'
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import api from "../../components/utils/api";
-import { PostsContext } from "../../contexts/post-context";
+import { useContext } from 'react';
+import s from './styles.module.css'
+import { UserContext } from '../../contexts/current-user-context';
+import { Avatar } from '@mui/material';
+import cn from 'classnames';
 
-export const NewPostPage = ({ id }) => {
-    const [popup, setPopup] = useState(false);
-    const [textVisible, setTextVisible] = useState(false);
+export const ProfilePage = ({ id }) => {
+
     const { currentUser } = useContext(UserContext);
-    const { setPosts } = useContext(PostsContext);
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({ mode: 'onBlur' })
-
-    // const handleClickCreatePost = (e) => {
-    //     e.preventDefault();
-    //     const dataFromInputs = {};
-    //     [...e.target.elements].map(input=> dataFromInputs[input.name] = input.value);
-    //     console.log(dataFromInputs);
-    // }
-
-    // Жил да был в пластмассовом мире повар. И варил он вкусные бургеры. Он делал их из хлеба и взбитого крема. | А рядом прыгала собачка. И просила у него косточку.
-    // https://cdn2.static1-sima-land.com/items/6083366/3/700-nw.jpg
-
-    const cbSubmitForm = (post) => {
-        // console.log(errors);
-        post.tags = post.tags.split(' ').map(e=> e = "#" + e)
-        api.createPost(post)
-            .then((createdPost) => {
-                console.log(createdPost);
-                setPosts(posts => [createdPost, ...posts])
-            })
-            .catch(err => console.log(err))
-        reset();
-    }
-
-    const handleEnterKey = (e) => {
-        if (e.key === "Enter") e.target.value = e.target.value.slice(0, e.target.value.length - 1) + " | ";
-    }
-
-    const handlePasteButton = (e) => {
-        navigator.clipboard.readText()
-            .then(dataText => {
-                e.target.control.value = dataText;
-            })
-    }
-    const showImageInForm = (e) => {
-        const imgLink = e.target.previousSibling.value;
-        const imgDiv = e.target.parentElement.parentElement.querySelector('#image');
-        imgDiv.src = imgLink;
-    }
-
-    const changeStatePopup = () => {
-        setPopup(!popup);
-    }
-
-    const titleRegister = register('title', {
-        required: {
-            value: true,
-            message: 'Друже, заголовок поставь.',
-        },
-    });
-    const tagsRegister = register('tags', {
-        pattern: {
-            value: /[^#]$/,
-            message: 'Ну просил же без значка #'
-        },
-    });
-    const textRegister = register('text', {
-        required: {
-            value: true,
-            message: 'Для осуществления поста нужно тело поста. Неможножечко текст потерялся.',
-        },
-        pattern: {
-            value: /[^(\n)]$/,
-            message: 'База не позволяет вводить перенос строки. Если хотите, чтобы строчка была перенесена, поставьте  вертикальный разделитель («|») в месте, где хотите перенос строки.'
-        }
-    });
-
-    useEffect(() => {
-        setTimeout(() => { setTextVisible(popup) }, 950)
-    }, [popup])
 
     return (
         <>
             <main className={cn(s.new_post_body)}>
-                <div className={cn(s.info_author_popup, {
-                    [s.info_author_popup_active]: popup,
-                    [s.info_author_popup_passive]: !popup,
-                })}>
-                    {popup && textVisible && <div className={s.popup_info} >
+                <div className={cn(s.info_author_popup)}>
+                    <div className={s.popup_info} >
                             <div className={s.popup_author_inf}>
-                                <span>
-                                    <button className={s.popup_author_name} onClick={changeStatePopup} type="button">{currentUser?.name}</button>
+                            <span>
+                                    <button className={s.popup_author_name} type="button">{currentUser?.name}</button>
                                 </span>
                                 <span className={s.popup_author_about}>{currentUser?.about}</span>
                                 <div className={s.popup_author_ad_inf}>
@@ -111,11 +32,11 @@ export const NewPostPage = ({ id }) => {
                             </div>
                             
                         </div>
-                    }
+                    
 
                 </div>
 
-                <form className={s.new_post_container} onSubmit={handleSubmit(cbSubmitForm)}>
+                <form className={s.new_post_container}>
                     <section className={s.edit_image}>
                         <div className={s.image_div}>
                             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7c83e95940601.5ea2f010b91c8.jpg" alt="" id='image' />
@@ -129,14 +50,13 @@ export const NewPostPage = ({ id }) => {
 
                         <span className={s.for_inp_n_btn}>
                             <input
-                                {...register('image')}
                                 className={s.image_src_input}
 
                                 type="url"
                                 placeholder="https://_{... какой-то картинък ...}_.com"
                                 name="image"
                                 id="imageSrc" />
-                            <button className={cn(s.a_for_pics, s.inp_btn, s.span_for_btn)} type="button" onClick={showImageInForm} >Смотреть</button>
+                            <button className={cn(s.a_for_pics, s.inp_btn, s.span_for_btn)} type="button" >Смотреть</button>
                         </span>
 
                     </section>
@@ -145,7 +65,7 @@ export const NewPostPage = ({ id }) => {
                         <div className={s.author} id={s.author}>
                             <div className={s.author_inf}>
                                 <span>
-                                    <button className={s.author_name} onClick={changeStatePopup} type="button">{currentUser?.name}</button>
+                                    <button className={s.author_name} type="button">{currentUser?.name}</button>
                                 </span>
                                 <span className={s.author_about}>{currentUser?.about}</span>
                             </div>
@@ -161,11 +81,9 @@ export const NewPostPage = ({ id }) => {
                                 <p>Тут может быть намек на содержимое, подытожывающая мысль, название, или просто шутка.</p>
                                 <span className={s.title_input_span}>
                                     <input
-                                        {...titleRegister}
                                         type="text"
                                         placeholder="Введите заголовок"
                                         name="title" />
-                                    {errors.title && <div className={s.error_box}><p className={s.errorMessage}>{errors.title.message}</p></div>}
                                 </span>
 
 
@@ -175,11 +93,9 @@ export const NewPostPage = ({ id }) => {
                                 <p>Напишите теги через пробел (без значка #)</p>
                                 <span className={s.tags_input_span}>
                                     <input
-                                        {...tagsRegister}
                                         type="text"
                                         placeholder="Введите теги"
                                         name="tags" />
-                                    {errors.tags && <div className={s.error_box}><p className={s.errorMessage}>{errors.tags.message}</p></div>}
                                 </span>
                             </div>
                         </div>
@@ -189,14 +105,12 @@ export const NewPostPage = ({ id }) => {
                         <button className={cn(s.text_label, s.a_for_pics, s.submit_btn)} type="submit">Создать пост</button>
                         <span className={s.text_span}>
                             <textarea
-                                {...textRegister}
                                 type='text'
                                 name='text'
                                 placeholder='Ваша замечательная речь или забавный случай. То, что вам хотелось рассказать. Излейте душу, так сказать.'
-                                rows={7} onKeyUp={handleEnterKey}
+                                rows={7}
                                 tabIndex="10">
                             </textarea>
-                            {errors.text && <div className={s.error_box}><p className={s.errorMessage}>{errors.text.message}</p></div>}
                         </span>
                     </section>
                 </form>
@@ -204,4 +118,3 @@ export const NewPostPage = ({ id }) => {
         </>
     );
 }
-

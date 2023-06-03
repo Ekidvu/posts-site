@@ -15,13 +15,12 @@ export function PostList() {
             {isLoading 
                 ? <Spinner bg="body"/>
                 : <>
-                    <Grid2 container spacing={5}>
+                    <Grid2 container spacing={5} id='posts_container_grid2'>
                     {postsListPag.map(postData => <Post {...postData} key={postData._id} />)}
                     </Grid2>
                 </>
             }
         </>
-        
     )
 }
 

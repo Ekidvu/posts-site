@@ -1,8 +1,10 @@
-div#header_cont{
-    /* height: 160px; */
+#header_cont{
+    /* height: fit-content; */
+    /* height: 130px; */
     /* padding-bottom: 20px; */
     /* margin-bottom: 0; */
     background-color: #1976d2;
+    /* flex-grow: 1; */
 }
 
 #appbar_style {

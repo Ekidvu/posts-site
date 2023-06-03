@@ -1,7 +1,7 @@
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import StarsIcon from '@mui/icons-material/Stars';
 
-function ProfileButton() {
+function FavButton() {
 
 const handleProfileIconClick = (e) => {
     // e.preventDefault();
@@ -17,9 +17,9 @@ const handleProfileIconClick = (e) => {
             onClick={handleProfileIconClick}
             color="inherit"
         >
-            <AccountCircle />
+            <StarsIcon />
         </IconButton>
     );
 }
 
-export default ProfileButton;
+export default FavButton;

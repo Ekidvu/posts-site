@@ -337,7 +337,7 @@ p.errorMessage {
     width: 600px;
     top: 5px;
     left: 100px;
-    background-color:rgba(223, 222, 205, 0.884);
+    background-color:rgba(223, 222, 205, 0.507);
     border: 2px solid rgb(34, 10, 46);
 }
 

@@ -8,7 +8,7 @@ export const postData = [
             ],
             "isPublished": true,
             "_id": "622bd9e806c7d323b8ae4615",
-            "title": "Возле Баскервиль-холла",
+            "title": "Жертва дворецкого",
             "author": {
                 "name": "Фортель Беспимпочкин",
                 "about": "Писатель-фантаст",

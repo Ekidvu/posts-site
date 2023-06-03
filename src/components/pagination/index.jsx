@@ -7,16 +7,19 @@ import { useContext, useEffect, useState } from "react";
 import { PostsContext } from "../../contexts/post-context";
 import api from "../utils/api";
 import { pageSize } from "../utils/global-funcs";
+import { useLocation } from "react-router-dom";
 
 
 
 export function PostsPagination() {
-    const { pagination, handlePageChange } = useContext(PostsContext);
+    const { pagination, favsPagination, handlePageChange } = useContext(PostsContext);
+    const location = useLocation();
+    const paginationPattern = location.pathname === "/posts" ? pagination : favsPagination;
 
     return (
         <Box className={s.pagination_box}>
             <Stack spacing={2} className={s.pagi_container}>
-                <Pagination count={Math.ceil(pagination.count / pageSize)} 
+                <Pagination count={Math.ceil(paginationPattern.count / pageSize)} 
                 onChange={handlePageChange}
                 color="secondary" />
             </Stack>

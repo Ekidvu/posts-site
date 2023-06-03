@@ -14,6 +14,11 @@ import { useContext } from 'react';
 import { PostsContext } from '../../contexts/post-context';
 import ProfileButton from '../btn-account';
 
+import FavButton from '../btn-favourites';
+import AddPostButton from '../btn-add-post';
+import { Link, useLocation } from 'react-router-dom';
+import HomeButton from '../btn-home';
+
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -60,8 +65,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export function Header() {
     const { handleFormSubmit, handleInputChange } = useContext(PostsContext)
 
+    const location = useLocation();
+
     return (
-        <>
             <Box id="header_cont" className={s.header}>
                 <AppBar position="static" className={s.appbar} >
                     <Toolbar className={s.div_box}>
@@ -84,10 +90,23 @@ export function Header() {
                         </div>
 
                         <div className={s.search_area}>
+                            <span className={s.icons_span}>
+                                {location.pathname!=='/posts' && <Link to={{ pathname: "/posts" }} className={s.profile_buttons}>
+                                    <HomeButton />
+                                </Link>}
+                                {location.pathname!=='/new-post' && <Link to={{ pathname: "/new-post" }} className={s.profile_buttons}>
+                                    <AddPostButton />
+                                </Link>}
+                                {location.pathname!=='/favourites' && <Link to={{ pathname: "/favourites" }} className={s.profile_buttons}>
+                                    <FavButton />
+                                </Link>
+                                }
+                                {location.pathname!=='/profile' && <Link to={{ pathname: "/profile" }} className={s.profile_buttons}>
+                                    <ProfileButton />
+                                </Link>}
+                                
+                            </span>
 
-                            <div className={s.profile_buttons}>
-                                <ProfileButton />
-                            </div>
 
                             <Search>
                                 <SearchIconWrapper>
@@ -108,8 +127,6 @@ export function Header() {
                     </Toolbar>
                 </AppBar>
             </Box>
-
-        </>
     );
 }
 

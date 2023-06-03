@@ -85,6 +85,7 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    scroll-behavior: smooth;
 }
 
 .comments {
@@ -142,8 +143,8 @@
 }
 
 .comment_text {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 19.5px;
+    font-weight: 500;
     color: rgb(34, 143, 40);
 }
 

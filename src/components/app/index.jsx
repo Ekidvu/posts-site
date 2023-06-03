@@ -1,7 +1,7 @@
 import { Container, CssBaseline } from '@mui/material';
 import { postData } from '../../posts';
 import { PostList } from '../post-list';
-// import s from './styles.module.css';
+import s from './styles.module.css';
 import { Header } from '../app-header';
 import { Footer } from '../app-footer';
 import { useEffect, useState } from 'react';
@@ -14,10 +14,13 @@ import { UserContext } from '../../contexts/current-user-context';
 import { BackToTop } from '../btn-to-top';
 import { PostsPagination } from '../pagination';
 import { NewPostPage } from '../../pages/new-post-page';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { FavouritePage } from '../../pages/favourite-page';
 
 export function App() {
     const [postBase, setPostBase] = useState(postData);
     const [currentUser, setCurrentUser] = useState([]);
+    const [favourites, setFavourites] = useState([]);
     const [currentPost, setCurrentPost] = useState(postBase[0]);
     const [changedPost, setChangedPost] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +30,9 @@ export function App() {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchpostBase, setSearchpostBase] = useState(postBase);
     const [pagination, setPagination] = useState({count: 0, from: 0, to: pageSize});
+    const [favsPagination, setFavsPagination] = useState({count: 0, from: 0, to: pageSize});
 
+    const location = useLocation()
 
     function handleClickOpenPost(currentPost) {
         setIsLoadingModal(true);
@@ -48,11 +53,8 @@ export function App() {
         const to = (page - 1) * pageSize + pageSize;
 
         setPagination({...pagination, from: from, to: to})
+        setFavsPagination({...favsPagination, from: from, to: to})
     }
-
-    // function changePost(comment, id) {
-
-    // }
 
     function handleEditKeyOnSearch() {
         const filteredList = postBase.filter(post => post?.title.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -87,11 +89,14 @@ export function App() {
             .then(([posts, userData]) => {
                 setCurrentUser(userData);
                 setPostBase(posts);
+
+                const favourites = posts.filter(post => isLiked(post.likes, userData._id));
+                setFavourites(favourites)
+                
+                // if(location.pathname === '/favourites')
                 setPagination({...pagination, count: posts.length})
+                setFavsPagination({...pagination, count: favourites.length})
             })
-            // .then(() => {
-            //     setPagination({...pagination, count: postBase.length})
-            // })
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
     }, [])
@@ -119,7 +124,8 @@ export function App() {
             handleFormSubmit,
             handleInputChange,
             handlePostLike,
-            posts: postBase, setPosts: setPostBase, 
+            posts: postBase, setPosts: setPostBase,
+            favourites, favsPagination,
             pagination, handlePageChange,
             isLoading, setIsLoading,
             isLoadingModal,
@@ -127,29 +133,60 @@ export function App() {
             <UserContext.Provider value={{ currentUser }}>
              
                 <CssBaseline />
-                <NewPostPage />
-
-                <Header />
-                <div id="back-to-top-anchor" />
-
+                
+                <Header>
+                    {/* <Routes>
+                        <Route path='*' element={
+                            
+                        } />
+                    </Routes> */}
+                </Header>
+                <div id="back-to-top-anchor" className={s.line}></div>
+                
                 <main className='cards_body'>
-                    <Container className='cards_body_container'>
-                        <PostList className='cards_body_postlist' />
-                    </Container>
+                <Routes>
+                    <Route path='/posts' element={
+                        <>
+                            <PostList className='cards_body_postlist' />
+                        <PostsPagination />
+                        </>
+                    } />
+
+                    <Route path='/favourites' element={
+                        <>
+                            <FavouritePage className='cards_body_postlist' />
+                        <PostsPagination />
+                        </>
+                    } />
+
+                    <Route path='/new-post' element={
+                        <section className='cards_body_container'>
+                            <NewPostPage />
+                        </section>
+                    } />
+                    <Route path='/profile' element={
+                        <section className='cards_body_container'>
+                            <NewPostPage />
+                        </section>
+                    } />
+
+                </Routes> 
                 </main>
 
-                <Footer />
+                {/* <Footer /> */}
                 <Modal isOpen={modalOpenStatus} onClose={onCloseModalPost}>
                     <ModalPost post={currentPost} />
                 </Modal>
 
                 <BackToTop anchorID="#back-to-top-anchor"/>
-                <PostsPagination />
+                
 
             </UserContext.Provider>
         </PostsContext.Provider>
     );
 }
+
+// {/* <Container component='span' className='cards_body_container'></Container> */}
 
 // const [changedPost, setChangedPost] = useState({ id: null, data: null });
 

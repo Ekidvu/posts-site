@@ -1,7 +1,8 @@
 import IconButton from '@mui/material/IconButton';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 
-function ProfileButton() {
+function AddPostButton() {
 
 const handleProfileIconClick = (e) => {
     // e.preventDefault();
@@ -17,9 +18,9 @@ const handleProfileIconClick = (e) => {
             onClick={handleProfileIconClick}
             color="inherit"
         >
-            <AccountCircle />
+            <DataSaverOnIcon />
         </IconButton>
     );
 }
 
-export default ProfileButton;
+export default AddPostButton;
