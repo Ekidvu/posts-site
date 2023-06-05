@@ -1,4 +1,4 @@
-.new_post_body {
+.profile_container {
     width: 100%;
     flex-grow: 1;
     height: 91.530vh;
@@ -8,7 +8,7 @@
     position: relative;
 }
 
-form.new_post_container {
+form.profile_author_info_section {
     display: grid;
     align-self: center;
     padding: 0;
@@ -21,7 +21,7 @@ form.new_post_container {
 
 /*---- 1st section Image ------*/
 
-section.edit_image {
+section.author_avatar {
     grid-column-start: span 2;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@ section.edit_image {
     height: fit-content;
 }
 
-/* .image_div {} */
+/* ----- buttons --------    .image_div {} */
 
 .a_for_pics {
     text-decoration: none;
@@ -37,9 +37,11 @@ section.edit_image {
     font-size: 18px;
 }
 
-.edit_image .a_for_pics:focus {
+.author_avatar .a_for_pics:focus {
     border: 2px solid #0b316b;
 }
+
+/* ------- image ---------- */
 
 .image_div img {
     max-width: 100%;
@@ -47,6 +49,8 @@ section.edit_image {
     border-radius: 10px;
     border: 1px solid #0b316b;
 }
+
+/* ----------- */
 
 .img_label {
     margin: 5px;
@@ -114,14 +118,15 @@ section.edit_image {
 }
 
 /*---- 2nd section Service ------*/
-section.service {
+
+section.author_info {
     margin-left: 2px;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.title, .tags, .author {
+.title, .tags, .author_name {
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -135,7 +140,7 @@ section.service {
     border-radius: 15px;
 }
 
-.author {
+.author_name {
     padding: 10px;
     margin-bottom: 5px;
     display: flex;
@@ -145,13 +150,8 @@ section.service {
     max-height: 120px;
 }
 
-.author_inf {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
 
-.author_name {
+/* .author_name {
     font-weight: 700;
     font-size: 16px;
     text-decoration: underline;
@@ -161,7 +161,7 @@ section.service {
     border: 2px solid transparent;
     border-radius: 19px;
     transition: 0.7s ease-in-out;
-}
+} */
 .author_name:hover {
     text-decoration: none;
     background-color:rgba(223, 222, 205, 0.507);

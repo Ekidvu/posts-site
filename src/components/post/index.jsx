@@ -53,7 +53,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
     }
     const tagsDiv = <div className={cn(s.tags_show, {
         [s.tags_show_active]: !!longTagsHoverState,
-    })}>{parseTags(tags)}</div>;
+    })}>{parseTags(tags).map((tag, i) => <span key={i} className={s.tag_bit}>{tag}</span>)}</div>;
 
 
     // console.log("Post title: ", _id, "is liked: ", like);
@@ -99,7 +99,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                     </Typography>
 
                     <CardActions className={s.bottom_card_cont}>
-                        <Typography component="div" className={s.tags} noWrap onMouseEnter={handleHoverLongTags} onMouseLeave={handleHideLongTags}>{parseTags(tags)}</Typography>
+                        <Typography component="div" className={s.tags} noWrap onMouseEnter={handleHoverLongTags} onMouseLeave={handleHideLongTags}>{parseTags(tags).map(tag => <div className={s.tag_bit}>{tag}</div>)}</Typography>
                         {longTagsHoverState && tagsDiv}
 
                         <div className={s.bottom_btns}>
@@ -121,6 +121,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
     );
 }
 
+// &nbsp;
 
 // {/* <Card container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 // <CardContent xs={6}>

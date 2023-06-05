@@ -10,39 +10,14 @@ export const ProfilePage = ({ id }) => {
 
     return (
         <>
-            <main className={cn(s.new_post_body)}>
-                <div className={cn(s.info_author_popup)}>
-                    <div className={s.popup_info} >
-                            <div className={s.popup_author_inf}>
-                            <span>
-                                    <button className={s.popup_author_name} type="button">{currentUser?.name}</button>
-                                </span>
-                                <span className={s.popup_author_about}>{currentUser?.about}</span>
-                                <div className={s.popup_author_ad_inf}>
-                                    <div className={s.popup_id}>userID:&nbsp;{currentUser?._id}</div>
-                                <div className={s.popup_email}>user email:&nbsp;{currentUser?.email}</div>
-                                <div className={s.popup_group}>user group:&nbsp;{currentUser?.group}</div>
-                                </div>
-                                
-                            </div>
-                            <div className={s.ava_div}>
-                                <Avatar src={currentUser?.avatar} component="span" className={s.popup_author_ava}>
-                                R
-                            </Avatar>
-                            </div>
-                            
-                        </div>
-                    
-
-                </div>
-
-                <form className={s.new_post_container}>
-                    <section className={s.edit_image}>
+            <main className={cn(s.profile_container)}>
+                <form className={s.profile_author_info_section}>
+                    <section className={s.author_avatar}>
                         <div className={s.image_div}>
                             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7c83e95940601.5ea2f010b91c8.jpg" alt="" id='image' />
                         </div>
                         <div className={s.img_help_btns} form='imageSrc'>
-                            <label htmlFor="imageSrc" className={cn(s.img_label, s.a_for_pics)} onClick={handlePasteButton}>
+                            <label htmlFor="imageSrc" className={cn(s.img_label, s.a_for_pics)}>
                                 Ссылка для изображения
                             </label>
                             <a className={cn(s.a_for_pics, s.img_label)} href="https://yandex.ru/images/search?from=tabbar&text=смешные%20картинки%20с%20почтальоном" target="blank" rel="noopener noreferrer">примеры</a>
@@ -61,24 +36,25 @@ export const ProfilePage = ({ id }) => {
 
                     </section>
 
-                    <section className={s.service}>
-                        <div className={s.author} id={s.author}>
-                            <div className={s.author_inf}>
-                                <span>
-                                    <button className={s.author_name} type="button">{currentUser?.name}</button>
-                                </span>
-                                <span className={s.author_about}>{currentUser?.about}</span>
-                            </div>
-                            <Avatar src={currentUser?.avatar} component="span" className={s.author_ava}>
-                                R
-                            </Avatar>
+                    <section className={s.author_info}>
+                        <div className={s.author_name}>
+                            {currentUser.name}
+                            <input
+                                        type="text"
+                                        placeholder="Изменить имя"
+                                        name="author_name" />
+                        </div>
+                        <div className={s.author_name}>
+                            {currentUser.about}                                    <input
+                                        type="text"
+                                        placeholder="Изменить инфо об авторе"
+                                        name="author_about" />
                         </div>
 
                         <div className={s.title_n_tags}>
                             <div className={s.title}>
-                                <h3 className={s.title_font}>Заголовок поста</h3>
-                                <h5>Задайте посту загаловок.</h5>
-                                <p>Тут может быть намек на содержимое, подытожывающая мысль, название, или просто шутка.</p>
+                                <h3 className={s.title_font}>Какое-то инфо об авторе</h3>
+
                                 <span className={s.title_input_span}>
                                     <input
                                         type="text"

@@ -16,6 +16,7 @@ import { PostsPagination } from '../pagination';
 import { NewPostPage } from '../../pages/new-post-page';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { FavouritePage } from '../../pages/favourite-page';
+import { ProfilePage } from '../../pages/profile-page';
 
 export function App() {
     const [postBase, setPostBase] = useState(postData);
@@ -166,7 +167,7 @@ export function App() {
                     } />
                     <Route path='/profile' element={
                         <section className='cards_body_container'>
-                            <NewPostPage />
+                            <ProfilePage />
                         </section>
                     } />
 
