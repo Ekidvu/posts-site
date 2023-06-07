@@ -78,6 +78,9 @@ export function App() {
             .then((updatePost) => {
                 const newListOfPosts = postBase.map(post => post._id === updatePost._id ? updatePost : post)
                 setPostBase(newListOfPosts)
+
+                const favourites = newListOfPosts.filter(post => isLiked(post.likes, currentUser._id));
+                setFavourites(favourites)
                 // setCurrentPost(updatePost)
                 console.log(updatePost);
             })
@@ -94,7 +97,6 @@ export function App() {
                 const favourites = posts.filter(post => isLiked(post.likes, userData._id));
                 setFavourites(favourites)
                 
-                // if(location.pathname === '/favourites')
                 setPagination({...pagination, count: posts.length})
                 setFavsPagination({...pagination, count: favourites.length})
             })
@@ -111,6 +113,12 @@ export function App() {
             .then(() => setChangedPost(null))
             .catch(err => console.log(err))
     }, [changedPost])
+
+    useEffect(() => {
+        api.getPostsList()
+            .then(updList => setPostBase(updList))
+            .catch(err => console.log(err))
+    }, [currentUser])
 
     useEffect(() => {
         handleEditKeyOnSearch()
@@ -131,7 +139,7 @@ export function App() {
             isLoading, setIsLoading,
             isLoadingModal,
         }}>
-            <UserContext.Provider value={{ currentUser }}>
+            <UserContext.Provider value={{ currentUser, setCurrentUser }}>
              
                 <CssBaseline />
                 
@@ -144,7 +152,7 @@ export function App() {
                 </Header>
                 <div id="back-to-top-anchor" className={s.line}></div>
                 
-                <main className='cards_body'>
+                <main className='cards_body' id="cards_body_id">
                 <Routes>
                     <Route path='/posts' element={
                         <>

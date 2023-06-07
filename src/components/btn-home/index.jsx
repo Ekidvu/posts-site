@@ -1,5 +1,6 @@
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
+import s from './styles.module.css'
 
 function HomeButton() {
 
@@ -10,6 +11,7 @@ const handleProfileIconClick = (e) => {
 
     return (
         <IconButton
+            id='homebutton'
             size="large"
             edge="end"
             aria-label="account of current user"

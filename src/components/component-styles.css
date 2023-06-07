@@ -10,11 +10,18 @@
 }
 
 
+/* .profile_container .profile_author_info_section .author_avatar .profile_author_ava {
+    width: fit-content;
+    height: fit-content;
+} */
 
 
 
-
-
+#homebutton {
+    /* text-shadow: rgb(24, 173, 24) 1px 0 10px; */
+    color: #FC0;
+    border: 1px solid rgba(223, 168, 17, 0.568);
+}
 
 
 /*-------*/
@@ -28,7 +35,7 @@
     background-color: #f9f9fd;
     border-radius: 10px;
 }
-  
+
 .text::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: linear-gradient(180deg, #ece02d, #ee941fc7);
@@ -56,4 +63,3 @@
 
 
 /* ----- PreLoader ------- */
-

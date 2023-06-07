@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import api from "../../components/utils/api";
 import { PostsContext } from "../../contexts/post-context";
+import UpdateStateButton from "../../components/btn-snackbar";
 
 export const NewPostPage = ({ id }) => {
     const [popup, setPopup] = useState(false);
@@ -14,26 +15,25 @@ export const NewPostPage = ({ id }) => {
     const { currentUser } = useContext(UserContext);
     const { setPosts } = useContext(PostsContext);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({ mode: 'onBlur' })
-
-    // const handleClickCreatePost = (e) => {
-    //     e.preventDefault();
-    //     const dataFromInputs = {};
-    //     [...e.target.elements].map(input=> dataFromInputs[input.name] = input.value);
-    //     console.log(dataFromInputs);
-    // }
-
-    // Жил да был в пластмассовом мире повар. И варил он вкусные бургеры. Он делал их из хлеба и взбитого крема. | А рядом прыгала собачка. И просила у него косточку.
-    // https://cdn2.static1-sima-land.com/items/6083366/3/700-nw.jpg
+    const [props, setProps] = useState({textAlert: '', severity: ''})
+    const alertGood = document.querySelector("#updateAlertButton");
 
     const cbSubmitForm = (post) => {
-        // console.log(errors);
-        post.tags = post.tags.split(' ').map(e=> e = "#" + e)
+        post.tags = post.tags.split(' ').map(e=> e = "#" + e);
         api.createPost(post)
             .then((createdPost) => {
                 console.log(createdPost);
                 setPosts(posts => [createdPost, ...posts])
             })
-            .catch(err => console.log(err))
+            .then(() => {
+                setProps({textAlert: "Пост успешно добавлен", severity: "success"})
+                alertGood.click()
+            })
+            .catch(err => {
+                setProps({textAlert: "Что-то не так с постом", severity: "error"})
+                alertGood.click()
+                console.log(err)
+            }) 
         reset();
     }
 
@@ -131,7 +131,6 @@ export const NewPostPage = ({ id }) => {
                             <input
                                 {...register('image')}
                                 className={s.image_src_input}
-
                                 type="url"
                                 placeholder="https://_{... какой-то картинък ...}_.com"
                                 name="image"
@@ -198,6 +197,7 @@ export const NewPostPage = ({ id }) => {
                             </textarea>
                             {errors.text && <div className={s.error_box}><p className={s.errorMessage}>{errors.text.message}</p></div>}
                         </span>
+                        <UpdateStateButton textAlert={props.textAlert} severity={props.severity}/>
                     </section>
                 </form>
             </main>

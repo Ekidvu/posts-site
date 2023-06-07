@@ -23,8 +23,6 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
     const thisPost = { title, text, author, _id, image, created_at, tags, likes, ...rest };
     const { setCurrentPost, handlePostLike, handleClickOpenPost } = useContext(PostsContext);
     const { currentUser } = useContext(UserContext)
-    // const [isLikedState, setIsLikedState] = useState(false);
-
 
     const like = isLiked(likes, currentUser?._id);
     const handleClickLike = () => handlePostLike({ likes, _id });
@@ -99,7 +97,7 @@ export function Post({ title, text, author, _id, image, created_at, tags, likes,
                     </Typography>
 
                     <CardActions className={s.bottom_card_cont}>
-                        <Typography component="div" className={s.tags} noWrap onMouseEnter={handleHoverLongTags} onMouseLeave={handleHideLongTags}>{parseTags(tags).map(tag => <div className={s.tag_bit}>{tag}</div>)}</Typography>
+                        <Typography component="div" className={cn(s.tags, 'card_tags')} onMouseEnter={handleHoverLongTags} onMouseLeave={handleHideLongTags}>{parseTags(tags).map((tag,i) => <div key={i} className={s.tag_bit}>{tag}</div>)}</Typography>
                         {longTagsHoverState && tagsDiv}
 
                         <div className={s.bottom_btns}>

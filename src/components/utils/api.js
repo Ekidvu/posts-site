@@ -16,7 +16,7 @@ class Api {
 
     getUserInfo() {
         return fetch(`${this.#baseUrl}/users/me`, {
-            headers: this.#headers
+            headers: this.#headers,
         })
             .then(this.#onResponce)
     }
@@ -24,6 +24,23 @@ class Api {
     getPostsList() {
         return fetch(`${this.#baseUrl}/v2/group-11/posts`, {
             headers: this.#headers
+        })
+            .then(this.#onResponce)
+    }
+
+    updateUserAvatar(avatar) {
+        return fetch(`${this.#baseUrl}/users/me/avatar`, {
+            method: "PATCH",
+            headers: this.#headers,
+            body: JSON.stringify({avatar}),
+        })
+            .then(this.#onResponce)
+    }
+    updateUserInfo(data) {
+        return fetch(`${this.#baseUrl}/users/me`, {
+            method: "PATCH",
+            headers: this.#headers,
+            body: JSON.stringify(data),
         })
             .then(this.#onResponce)
     }

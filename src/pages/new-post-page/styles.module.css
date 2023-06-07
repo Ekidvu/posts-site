@@ -1,9 +1,10 @@
 .new_post_body {
     width: 100%;
-    flex-grow: 1;
-    height: 91.530vh;
+    /* flex-grow: 1; */ /* height: 91.530vh;  */ 
+    /* height: 89.92vh; */
+    height: 100%;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     position: relative;
 }

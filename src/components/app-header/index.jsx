@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import cn from 'classnames'
 import s from './styles.module.css'
 import "./index.css"
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { PostsContext } from '../../contexts/post-context';
 import ProfileButton from '../btn-account';
 
@@ -64,11 +64,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export function Header() {
     const { handleFormSubmit, handleInputChange } = useContext(PostsContext)
+    const [wink, setWink] = useState(false);
 
     const location = useLocation();
+    const crazywink = (bool, pause) => setTimeout(()=> setWink(bool), pause);
+    function winkFew(e) {
+        if (location.pathname === '/posts') {
+            setWink(true);
+            crazywink(false,300);
+            crazywink(true,400);
+            crazywink(false,650);
+        } 
+    } 
 
     return (
-            <Box id="header_cont" className={s.header}>
+            <Box id="header_cont" className={s.header} onClick={winkFew}>
                 <AppBar position="static" className={s.appbar} >
                     <Toolbar className={s.div_box}>
                         <div className={s.div_menu}>
@@ -85,7 +95,9 @@ export function Header() {
 
                         <div className={s.div_title_box}>
                             <div className={s.div_title_box_text}>
-                                Ну и __@<span>▲</span>@<br></br> __шуточки
+                                <div>Ну и __<div className={cn({
+                                    [s.invisible]: wink,
+                                })}>@</div><span>▲</span>@</div>__шуточки
                             </div>
                         </div>
 

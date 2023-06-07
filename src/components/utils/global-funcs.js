@@ -12,7 +12,7 @@ export const autoHeight = (el) => {
 export const parseTags = (tags) => {
     const parsedTags = tags.length === 1 
         ? tags.join('').split(/\s|#/g).filter(e=>e).map(tag => `#${tag} `) 
-        : tags.map(tag => "#" + tag.trim().replace(/#/g, '') + " ")
+        : tags.map(tag => "#" + tag.trim().replace(/\s/g, '_').replace(/#/g, '') + " ")
     return parsedTags
 }
 
